@@ -1,0 +1,9 @@
+node_modules/
+elasticsearch*/
+redis-*/
+
+*.swp
+*.rdb
+ServerSettings.json
+bundles.json
+bundle.js
