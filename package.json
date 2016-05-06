@@ -9,7 +9,7 @@
     "test": "./node_modules/.bin/mocha --recursive"
   },
   "author": "hkal",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cheerio": "^0.20.0",
     "elasticsearch": "^10.1.3",
