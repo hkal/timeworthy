@@ -130,7 +130,9 @@ class SearchResultsPage extends React.Component {
       }, searchFunc);
     } else {
       searchText = this.props.location.query.q;
-      searchFunc();
+      this.setState({
+        isLoading: true
+      }, searchFunc);
     }
   }
 }
