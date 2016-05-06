@@ -92,29 +92,29 @@ class SearchResultsPage extends React.Component {
 
     let searchFunc = () => {
       if (this.request === undefined || this.request.xhr.readyState === 4) {
-      this.request = request
-        .get(`/search?q=${searchText}&from=${this.state.currentPage}`)
-        .timeout(5000)
-        .end((error, response) => {
-          document.title = searchText;
+        this.request = request
+          .get(`/search?q=${searchText}&from=${this.state.currentPage}`)
+          .timeout(5000)
+          .end((error, response) => {
+            document.title = searchText;
 
-          if (error) {
+            if (error) {
+              this.setState({
+                isLoading: false,
+                didFail: true,
+                searchText: searchText
+              });
+
+              return;
+            }
+
             this.setState({
               isLoading: false,
-              didFail: true,
+              results: this.state.results.concat(response.body),
+              currentPage: this.state.currentPage + 10,
               searchText: searchText
             });
-
-            return;
-          }
-
-          this.setState({
-            isLoading: false,
-            results: this.state.results.concat(response.body),
-            currentPage: this.state.currentPage + 10,
-            searchText: searchText
           });
-        });
       }
     };
 
