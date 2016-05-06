@@ -19,7 +19,7 @@ const buttonStyle = {
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchText: this.props.searchText};
+    this.state = {searchText: this.props.searchText || ''};
   }
 
   componentDidMount() {

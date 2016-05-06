@@ -6,11 +6,11 @@ import SearchResult from '../components/SearchResult';
 
 const navbarStyle = {
   position: 'absolute',
-  top: '0',
-  right: '0',
+  top: 0,
+  right: 0,
   width: '100%',
-  zIndex: '1000',
-  borderRadius: '0'
+  zIndex: 1000,
+  borderRadius: 0
 };
 
 class SearchResultsPage extends React.Component {

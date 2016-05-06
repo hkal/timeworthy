@@ -2,7 +2,7 @@ import React from 'react';
 
 const footerStyle = {
   position: 'absolute',
-  bottom: '0',
+  bottom: 0,
   width: '100%',
   height: '60px',
   backgroundColor: 'f5f5f5',

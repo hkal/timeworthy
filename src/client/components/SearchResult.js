@@ -2,7 +2,7 @@ import React from 'react';
 
 const priceListStyle = {
   marginTop: '10px',
-  padding: '0',
+  padding: 0,
   listStyle: 'none'
 };
 
@@ -18,7 +18,7 @@ const titleStyle = {
 };
 
 const emphasisStyle = {
-  fontWeight: '500'
+  fontWeight: 500
 };
 
 class SearchResult extends React.Component {
