@@ -65,7 +65,7 @@ class SearchResultsPage extends React.Component {
         <nav className="navbar navbar-default" style={navbarStyle}>
           <div className="container">
             <div className="navbar-header">
-              <a className="navbar-brand" href="/">Timeworth</a>
+              <a className="navbar-brand" href="/">Timeworthy</a>
             </div>
             <SearchForm searchText={this.props.location.query.q} />
           </div>
