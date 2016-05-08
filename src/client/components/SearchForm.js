@@ -20,6 +20,8 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {searchText: this.props.searchText || ''};
+    this.search = this.search.bind(this);
+    this.inputHandler = this.inputHandler.bind(this);
   }
 
   componentDidMount() {
@@ -47,12 +49,12 @@ class SearchForm extends React.Component {
 
   render() {
     return (
-      <form method="POST" onSubmit={this.search.bind(this)} style={formStyle}>
+      <form method="POST" onSubmit={this.search} style={formStyle}>
         <input
           type="text"
           ref="searchField"
           style={textFieldStyle}
-          onChange={this.inputHandler.bind(this)}
+          onChange={this.inputHandler}
           value={this.state.searchText} />
         <input className='btn btn-primary' value="Search" type="submit" />
       </form>

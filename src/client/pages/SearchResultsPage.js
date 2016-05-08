@@ -23,11 +23,13 @@ class SearchResultsPage extends React.Component {
       results: [],
       currentPage: 0
     };
+    this.search = this.search.bind(this);
+    this.scrollhandler = this.scrollHandler.bind(this);
   }
 
   componentDidMount() {
-    this.unlisten = this.context.router.listenBefore(this.search.bind(this));
-    window.addEventListener('scroll', this.scrollHandler.bind(this));
+    this.unlisten = this.context.router.listenBefore(this.search);
+    window.addEventListener('scroll', this.scrollHandler);
     this.search();
   }
 
