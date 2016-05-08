@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Timeworthy</title>
+    {% for stylesheet in bundles.css %}
+    <link rel="stylesheet" href="{{stylesheet}}">
+    {% endfor %}
     <style>
       #application {
         padding-top: 90px;
@@ -17,6 +20,8 @@
   </head>
   <body>
     <div id="application"></div>
-    <script src="/static/bundle.js"></script>
+    {% for script in bundles.js %}
+    <script src="{{script}}"></script>
+    {% endfor %}
   </body>
 </html>
