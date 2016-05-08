@@ -23,7 +23,7 @@ class BasicLayout extends React.Component {
     return (
       <div>
         <div className='container' style={containerStyle}>
-	  {this.props.children}
+          {this.props.children}
         </div>
         <footer style={footerStyle}>
           <div className='container'>
