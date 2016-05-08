@@ -17,8 +17,12 @@ const webpackConfig = {
         }
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
   }

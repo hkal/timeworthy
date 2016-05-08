@@ -5,6 +5,8 @@ import BaseLayout from './pages/BaseLayout';
 import SearchPage from './pages/SearchPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 render((
   <Router history={browserHistory}>
     <Route path='/' component={BaseLayout}>
