@@ -34,7 +34,7 @@ describe('HowLongToBeatParser', () => {
     it('should include HowLongToBeat URL', () => {
       const result = HowLongToBeatParser.parse(fixtures.empty);
 
-      assert.strictEqual(result.url, 'http://howlongtobeat.com/game.php?id=28161');
+      assert.strictEqual(result.htbUrl, 'http://howlongtobeat.com/game.php?id=28161');
     });
 
     it('should parse single result properly', () => {
