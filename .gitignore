@@ -7,3 +7,5 @@ redis-*/
 ServerSettings.json
 bundles.json
 bundle.js
+
+.DS_Store
