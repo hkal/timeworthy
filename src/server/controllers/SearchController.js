@@ -39,13 +39,14 @@ class SearchController {
               .map((value, index) => {
                 const steamData = validResponses[index].body[value.steamId].data;
                 const gameData = Object.assign(value, SteamParser.parse(steamData));
-
                 const pricePerHour = (gameData.price / gameData.mainStoryTime);
+
                 gameData.pricePerHour = (Math.floor(100 * pricePerHour) / 100).toFixed(2);
                 gameData.pricePerHourFormatted = '$' + gameData.pricePerHour;
                 // importer should format this
                 gameData.mainStoryTimeFormatted = (gameData.mainStoryTime === 1) ?
                   gameData.mainStoryTime + ' hour' : gameData.mainStoryTime + ' hours';
+                gameData.steamUrl = `http:\/\/store.steampowered.com/app/${value.steamId}/`;
 
                 return gameData;
               });

@@ -3,6 +3,7 @@ import request from 'superagent';
 
 import SearchForm from '../components/SearchForm';
 import SearchResult from '../components/SearchResult';
+import SpinnerGif from '../assets/spinner.gif';
 
 const navbarStyle = {
   position: 'absolute',
@@ -72,7 +73,7 @@ class SearchResultsPage extends React.Component {
         </nav>
         {resultBody}
         <div className={(!this.state.isLoading) ? 'hidden' : ''} style={{textAlign: 'center'}}>
-          <img height="50" width="50" src="/static/assets/spinner.gif" />
+          <img height="50" width="50" src={SpinnerGif} />
         </div>
       </div>
     );

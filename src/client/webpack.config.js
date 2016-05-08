@@ -15,6 +15,10 @@ const webpackConfig = {
         query: {
           presets: ['react', 'es2015']
         }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader'
       }
     ]
   }

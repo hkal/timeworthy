@@ -39,7 +39,7 @@ class HowLongToBeatParser {
     }
 
     try {
-      results.url = `http://howlongtobeat.com/${$('li .search_list_image a')[0].attribs.href}`;
+      results.htbUrl = `http://howlongtobeat.com/${$('li .search_list_image a')[0].attribs.href}`;
 
       const gameType = $('li .search_list_details_block .search_list_tidbit:nth-child(1)')[0]
         .children[0]
