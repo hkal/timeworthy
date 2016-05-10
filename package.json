@@ -6,6 +6,7 @@
   "scripts": {
     "import": "node ./src/importer/",
     "start": "./node_modules/.bin/webpack --config ./src/client/webpack.config.js && node ./index.js",
+    "production": "./node_modules/.bin/webpack --config ./src/client/webpack.prod.js && node ./index.js",
     "test": "./node_modules/.bin/mocha --recursive"
   },
   "author": "hkal",
