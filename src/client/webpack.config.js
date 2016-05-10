@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const webpackConfig = {
   entry: path.join(__dirname, 'index.js'),
@@ -6,6 +7,14 @@ const webpackConfig = {
     path: path.join(__dirname, '../server/static'),
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        dead_code: true
+      }
+    })
+  ],
   module: {
     loaders: [
       {
