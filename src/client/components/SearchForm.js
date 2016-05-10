@@ -21,6 +21,7 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {searchText: this.props.searchText || ''};
     this.search = this.search.bind(this);
+    this.selectText = this.selectText.bind(this);
     this.inputHandler = this.inputHandler.bind(this);
   }
 
@@ -41,6 +42,11 @@ class SearchForm extends React.Component {
         q: this.state.searchText
       }
     });
+    this.refs.searchField.blur();
+  }
+
+  selectText(e) {
+    e.target.select();
   }
 
   inputHandler(e) {
@@ -55,6 +61,7 @@ class SearchForm extends React.Component {
           ref="searchField"
           style={textFieldStyle}
           onChange={this.inputHandler}
+          onFocus={this.selectText}
           value={this.state.searchText} />
         <input className='btn btn-primary' value="Search" type="submit" />
       </form>
