@@ -21,7 +21,8 @@ class SearchResultsPage extends React.Component {
     this.state = {
       isLoading: true,
       results: [],
-      currentPage: 0
+      currentPage: 0,
+      infiniteScrollDisabled: false
     };
   }
 
@@ -80,8 +81,10 @@ class SearchResultsPage extends React.Component {
   }
 
   scrollHandler(e) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight &&
-       window.scrollY > this.lastScrollTop && !this.state.isLoading) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight
+        && window.scrollY > this.lastScrollTop
+        && !this.state.isLoading
+        && !this.state.infiniteScrollDisabled) {
       this.search();
     }
 
@@ -109,6 +112,16 @@ class SearchResultsPage extends React.Component {
               return;
             }
 
+            if (response.body.length === 0) {
+              this.setState({
+                isLoading: false,
+                infiniteScrollDisabled: true,
+                searchText: searchText
+              });
+
+              return;
+            }
+
             this.setState({
               isLoading: false,
               results: this.state.results.concat(response.body),
@@ -127,12 +140,14 @@ class SearchResultsPage extends React.Component {
       this.setState({
         currentPage: 0,
         results: [],
-        isLoading: true
+        isLoading: true,
+        infiniteScrollDisabled: false,
       }, searchFunc);
     } else {
       searchText = this.props.location.query.q;
       this.setState({
-        isLoading: true
+        isLoading: true,
+        infiniteScrollDisabled: false,
       }, searchFunc);
     }
   }
