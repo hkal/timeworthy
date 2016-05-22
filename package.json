@@ -11,6 +11,9 @@
   },
   "author": "hkal",
   "license": "MIT",
+  "engines": {
+    "node": "5.4.1"
+  },
   "dependencies": {
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
