@@ -1,25 +1,32 @@
 'use strict';
 
 const request = require('superagent');
-
+const kue = require('kue');
 const GameModel = require('./../server/models/GameModel');
 const HowLongToBeatParser = require('./../server/parsers/HowLongToBeatParser');
 
 class GameImporter {
-  constructor(games, queue) {
-    this.queue = queue;
-    this.games = games;
-
-    this.queue.process('game', 20, this.process);
+  constructor() {
+    this.queue = kue.createQueue(
+      host: process.env.REDIS_URL || 'localhost'
+    );
   }
 
-  start() {
-    for (let i = 0; i < this.games.length; i++) {
+  enqueue(games, done) {
+    for (let i = 0; i < games.length; i++) {
       this.queue
-        .create('game', this.games[i])
+        .create('game', games[i])
         .removeOnComplete(true)
-        .save();
+        .save(() => {
+          if (i === games.length - 1) {
+            done();
+          }
+        });
     }
+  }
+
+  run() {
+    this.queue.process('game', 20, this.process);
   }
 
   process(job, done) {

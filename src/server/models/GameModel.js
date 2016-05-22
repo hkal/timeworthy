@@ -2,7 +2,7 @@
 
 const co = require('co');
 const elasticsearch = require('elasticsearch').Client({
-  host: 'localhost:9200'
+  host: process.env.SEARCHBOX_URL || 'localhost:9200'
 });
 const request = require('superagent');
 
