@@ -10,8 +10,12 @@ const bundles = {};
 
 console.log(chalk.green('Starting Timeworthy'));
 
-fs.unlinkSync(metaBundlePath);
-console.log(leftPad('Deleted stale meta-bundle'));
+try {
+  fs.unlinkSync(metaBundlePath);
+  console.log(leftPad('Deleted stale meta-bundle'));
+} catch(e) {
+  console.log(leftPad('No meta-bundle found'));
+}
 
 // TODO: investigate why reduce() acts wonky
 for (let i = 0; i < files.length; i++) {
