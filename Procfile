@@ -1,2 +1,2 @@
-web: npm production
+web: npm run production
 worker: npm run process-queue
