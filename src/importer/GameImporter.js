@@ -7,11 +7,23 @@ const HowLongToBeatParser = require('./../server/parsers/HowLongToBeatParser');
 
 class GameImporter {
   constructor() {
-    this.queue = kue.createQueue({
-      redis: {
-        host: process.env.REDIS_URL || 'localhost'
+    const config = {};
+
+    if (process.env.REDIS_URL) {
+      const url = require('url');
+      const redisUrl = url.parse(process.env.REDIS_URL);
+
+      config.redis = {
+        host: redisUrl.hostname,
+        port: parseInt(redisUrl.port)
+      };
+
+      if (redisUrl.auth) {
+        config.redis.auth = redisUrl.auth.split(':')[1];
       }
-    });
+    }
+
+    this.queue = kue.createQueue(config);
   }
 
   enqueue(games, done) {
