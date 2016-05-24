@@ -1,50 +1,62 @@
 'use strict';
 
 const request = require('superagent');
-const kue = require('kue');
+const AMQP = require('amqplib');
 const GameModel = require('./../server/models/GameModel');
 const HowLongToBeatParser = require('./../server/parsers/HowLongToBeatParser');
 
 class GameImporter {
   constructor() {
-    const config = {};
-
-    if (process.env.REDIS_URL) {
-      const url = require('url');
-      const redisUrl = url.parse(process.env.REDIS_URL);
-
-      config.redis = {
-        host: redisUrl.hostname,
-        port: parseInt(redisUrl.port)
-      };
-
-      if (redisUrl.auth) {
-        config.redis.auth = redisUrl.auth.split(':')[1];
-      }
-    }
-
-    this.queue = kue.createQueue(config);
+    this.queueName = 'gametime';
+    this.queue = AMQP.connect(
+      process.env.CLOUDAMQP_URL || 'amqp://localhost'
+    );
   }
 
   enqueue(games, done) {
+    let gameCount = 0;
+
     for (let i = 0; i < games.length; i++) {
       this.queue
-        .create('game', games[i])
-        .removeOnComplete(true)
-        .save(() => {
-          if (i === games.length - 1) {
+        .then((conn) => conn.createChannel())
+        .then((channel) => {
+          const q = this.queueName;
+
+          return channel.assertQueue(q)
+            .then((ok) => {
+              const content = new Buffer(JSON.stringify(games[i]));
+              return channel.sendToQueue(q, content);
+            });
+        })
+        .then(() => {
+          gameCount++;
+
+          if (gameCount === games.length) {
             done();
           }
         });
     }
   }
 
-  run() {
-    this.queue.process('game', 20, this.process);
+  process() {
+    this.queue
+      .then((conn) => conn.createChannel())
+      .then((channel) => {
+        const q = this.queueName;
+
+        return channel.assertQueue(q)
+          .then((ok) => {
+            return channel.consume(q, (message) => {
+              if (message !== null) {
+                const game = JSON.parse(message.content.toString());
+                this.getHLTBData(game, message, channel.ack);
+              }
+            });
+          });
+      });
   }
 
-  process(job, done) {
-    const game = job.data;
+  getHLTBData(game, message, done) {
     const title = game.name;
     const steamId = game.appid;
 
@@ -63,13 +75,11 @@ class GameImporter {
             .add(results)
             .then((error, response) => {
               console.log(title + ' was successfully indexed: ' + response + '\n');
+              done(message);
             });
-        } else if (results !== undefined) {
-          done(new Error('Could not add ' + title + '\n'));
-          return;
+        } else {
+          done(message);
         }
-
-        done();
       });
   }
 }

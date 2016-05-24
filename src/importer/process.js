@@ -1,4 +1,4 @@
 const GameImporter = require('./GameImporter');
 
 const importer = new GameImporter();
-importer.run();
+importer.process();

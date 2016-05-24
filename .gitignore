@@ -2,10 +2,8 @@ node_modules/
 npm-debug.log
 
 elasticsearch*/
-redis-*/
 
 *.swp
-*.rdb
 ServerSettings.json
 bundles.json
 bundle.js
