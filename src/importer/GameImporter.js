@@ -11,6 +11,8 @@ class GameImporter {
     this.queue = AMQP.connect(
       process.env.CLOUDAMQP_URL || 'amqp://localhost'
     );
+
+    this.dequeue = this.dequeue.bind(this);
   }
 
   enqueue(games, done) {
@@ -39,21 +41,7 @@ class GameImporter {
   }
 
   process() {
-    this.queue
-      .then((conn) => conn.createChannel())
-      .then((channel) => {
-        const q = this.queueName;
-
-        return channel.assertQueue(q)
-          .then((ok) => {
-            return channel.consume(q, (message) => {
-              if (message !== null) {
-                const game = JSON.parse(message.content.toString());
-                this.getHLTBData(game, message, channel.ack);
-              }
-            });
-          });
-      });
+    setInterval(this.dequeue, 100);
   }
 
   getHLTBData(game, message, done) {
@@ -65,6 +53,11 @@ class GameImporter {
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({queryString: title, t: 'games', sorthead: 'popular', sortd: 'Normal Order', detail: '0'})
       .end((error, query) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+
         const results = HowLongToBeatParser.parse(query.text);
 
         if (results !== undefined && !(Object.keys(results).length === 0)) {
@@ -74,12 +67,33 @@ class GameImporter {
           GameModel
             .add(results)
             .then((error, response) => {
-              console.log(title + ' was successfully indexed: ' + response + '\n');
-              done(message);
+              console.log(title + ' was indexed');
+              done.ack(message);
             });
         } else {
-          done(message);
+          console.log(title + ' was not indexed');
+          done.ack(message);
         }
+      });
+  }
+
+  dequeue() {
+    this.queue
+      .then((conn) => conn.createChannel())
+      .then((channel) => {
+        const q = this.queueName;
+
+        return channel.assertQueue(q)
+          .then((ok) => {
+            return channel
+              .get(q)
+              .then((message) => {
+                if (message !== null && message.content) {
+                  const game = JSON.parse(message.content.toString());
+                  this.getHLTBData(game, message, channel);
+                }
+              });
+          });
       });
   }
 }
