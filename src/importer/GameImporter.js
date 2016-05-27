@@ -67,6 +67,8 @@ class GameImporter {
           GameModel
             .add(results)
             .then((error, response) => {
+              console.log(error);
+              console.log(response);
               console.log(title + ' was indexed');
               done.ack(message);
             });
