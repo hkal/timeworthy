@@ -54,7 +54,6 @@ class GameImporter {
       .send({queryString: title, t: 'games', sorthead: 'popular', sortd: 'Normal Order', detail: '0'})
       .end((error, query) => {
         if (error) {
-          console.error(error);
           return;
         }
 
