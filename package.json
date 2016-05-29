@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "enqueue": "node ./src/importer/enqueue.js",
-    "process-queue": "node ./src/importer/process.js",
+    "enqueue": "node ./scripts/importer.js enqueue",
+    "process": "node ./scripts/importer.js process",
     "start": "./node_modules/.bin/webpack --config ./src/client/webpack.config.js && node ./index.js",
     "production": "./node_modules/.bin/webpack --config ./src/client/webpack.prod.js && node ./index.js",
     "test": "./node_modules/.bin/mocha --recursive"
@@ -25,6 +25,7 @@
     "chalk": "^1.1.3",
     "cheerio": "^0.20.0",
     "co": "^4.6.0",
+    "commander": "^2.9.0",
     "css-loader": "^0.23.1",
     "elasticsearch": "^10.1.3",
     "file-loader": "^0.8.5",
