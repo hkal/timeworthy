@@ -23,6 +23,7 @@ class SearchController {
           .getSteamData(searchResults)
           .then((responses) => {
             let validResponses = [];
+
             const payload = searchResults
               .filter((value, index) => {
                 const steamData = responses[index].body[value.steamId].data;
@@ -34,8 +35,6 @@ class SearchController {
                 validResponses.push(responses[index]);
                 return true;
               })
-
-            payload
               .map((value, index) => {
                 const steamData = validResponses[index].body[value.steamId].data;
                 const gameData = Object.assign(value, SteamParser.parse(steamData));
