@@ -38,7 +38,9 @@ class SearchController {
               .map((value, index) => {
                 const steamData = validResponses[index].body[value.steamId].data;
                 const gameData = Object.assign(value, SteamParser.parse(steamData));
-                const pricePerHour = (gameData.price / gameData.mainStoryTime);
+                const calculationPrice = (gameData.salePrice) ?
+                  gameData.salePrice : gameData.price;
+                const pricePerHour = (calculationPrice / gameData.mainStoryTime);
 
                 gameData.pricePerHour = (Math.floor(100 * pricePerHour) / 100).toFixed(2);
                 gameData.pricePerHourFormatted = '$' + gameData.pricePerHour;
