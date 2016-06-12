@@ -1,7 +1,7 @@
 'use strict';
 
-const GameModel = require('../models/GameModel');
-const SteamParser = require('../parsers/SteamParser');
+const GameModel = require('../../models/GameModel');
+const SteamParser = require('../../parsers/SteamParser');
 
 class SearchController {
   static handler(request, reply) {

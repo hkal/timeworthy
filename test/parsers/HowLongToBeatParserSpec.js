@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const HowLongToBeatParser = require('../../src/server/parsers/HowLongToBeatParser');
+const HowLongToBeatParser = require('../../src/parsers/HowLongToBeatParser');
 const fixtures = require('./fixtures');
 
 describe('HowLongToBeatParser', () => {

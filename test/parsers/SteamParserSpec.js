@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const SteamParser = require('../../src/server/parsers/SteamParser');
+const SteamParser = require('../../src/parsers/SteamParser');
 
 describe('SteamParser', () => {
   const steamResponseStub = {

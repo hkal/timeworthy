@@ -2,8 +2,8 @@
 
 const request = require('superagent');
 const AMQP = require('amqplib');
-const GameModel = require('./../server/models/GameModel');
-const HowLongToBeatParser = require('./../server/parsers/HowLongToBeatParser');
+const GameModel = require('./../models/GameModel');
+const HowLongToBeatParser = require('./../parsers/HowLongToBeatParser');
 
 class GameImporter {
   constructor() {
