@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const formStyle = {
   margin: '5px 0'
@@ -16,7 +16,7 @@ const buttonStyle = {
   marginTop: '-3px'
 };
 
-class SearchForm extends React.Component {
+class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {searchText: this.props.searchText || ''};
@@ -70,8 +70,8 @@ class SearchForm extends React.Component {
 }
 
 SearchForm.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-  autoFocus: React.PropTypes.bool
+  router: PropTypes.object.isRequired,
+  autoFocus: PropTypes.bool
 }
 
 export default SearchForm;

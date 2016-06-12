@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm';
 
 const containerStyle = {
@@ -6,7 +6,7 @@ const containerStyle = {
   marginTop: '20%'
 };
 
-class SearchPage extends React.Component {
+class SearchPage extends Component {
   componentDidMount() {
     document.title = 'Timeworthy';
   }

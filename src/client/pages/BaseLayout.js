@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 const footerStyle = {
   position: 'absolute',
@@ -18,7 +18,7 @@ const containerStyle = {
   marginBottom: '60px'
 };
 
-class BasicLayout extends React.Component {
+class BasicLayout extends Component {
   render() {
     return (
       <div>

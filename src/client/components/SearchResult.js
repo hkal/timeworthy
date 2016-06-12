@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import SteamLogo from '../assets/steamlogo.jpg';
 import HTBLogo from '../assets/htblogo.png';
@@ -29,7 +29,7 @@ const strikeOutStyle = Object.assign({textDecoration: 'line-through'}, emphasisS
 // TODO: Look into using spread operator here
 const priceStyle = Object.assign({color: '#4cae4c'}, emphasisStyle);
 
-class SearchResult extends React.Component {
+class SearchResult extends Component {
   render() {
     const game = this.props.game;
     const priceListItem = (game.salePrice) ?

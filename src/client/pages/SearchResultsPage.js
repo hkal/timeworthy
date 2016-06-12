@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import request from 'superagent';
 
 import SearchForm from '../components/SearchForm';
@@ -14,7 +14,7 @@ const navbarStyle = {
   borderRadius: 0
 };
 
-class SearchResultsPage extends React.Component {
+class SearchResultsPage extends Component {
   constructor(props) {
     super(props);
 
@@ -154,7 +154,7 @@ class SearchResultsPage extends React.Component {
 }
 
 SearchResultsPage.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 }
 
 export default SearchResultsPage;
