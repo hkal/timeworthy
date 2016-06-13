@@ -24,10 +24,15 @@ const emphasisStyle = {
   fontWeight: 500
 };
 
-const strikeOutStyle = Object.assign({textDecoration: 'line-through'}, emphasisStyle);
+const strikeOutStyle = {
+  ...emphasisStyle,
+  textDecoration: 'line-through'
+};
 
-// TODO: Look into using spread operator here
-const priceStyle = Object.assign({color: '#4cae4c'}, emphasisStyle);
+const priceStyle = {
+  ...emphasisStyle,
+  color: '#4cae4c'
+};
 
 class SearchResult extends Component {
   render() {
