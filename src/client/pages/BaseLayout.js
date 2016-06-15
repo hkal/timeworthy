@@ -18,21 +18,17 @@ const containerStyle = {
   marginBottom: '60px'
 };
 
-class BasicLayout extends Component {
-  render() {
-    return (
-      <div>
-        <div className='container' style={containerStyle}>
-          {this.props.children}
-        </div>
-        <footer style={footerStyle}>
-          <div className='container'>
-            <p style={footerTextStyle}>Made with <span style={{color: "red"}}>&hearts;</span> by <a href="https://github.com/hkal">hkal</a></p>
-          </div>
-        </footer>
+export default (props) => {
+  return (
+    <div>
+      <div className='container' style={containerStyle}>
+        {props.children}
       </div>
-    );
-  }
-}
-
-export default BasicLayout;
+      <footer style={footerStyle}>
+        <div className='container'>
+          <p style={footerTextStyle}>Made with <span style={{color: "red"}}>&hearts;</span> by <a href="https://github.com/hkal">hkal</a></p>
+        </div>
+      </footer>
+    </div>
+  );
+};
