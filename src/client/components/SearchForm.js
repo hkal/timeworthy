@@ -34,7 +34,10 @@ export default class SearchForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {searchText: this.props.searchText || ''};
+    this.state = {
+      searchText: this.props.searchText || ''
+    };
+
     this.search = this.search.bind(this);
     this.selectText = this.selectText.bind(this);
     this.inputHandler = this.inputHandler.bind(this);
@@ -65,7 +68,9 @@ export default class SearchForm extends Component {
   }
 
   inputHandler(e) {
-    this.setState({searchText: e.target.value});
+    this.setState({
+      searchText: e.target.value
+    });
   }
 
   render() {

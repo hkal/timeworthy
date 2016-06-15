@@ -50,7 +50,7 @@ class HowLongToBeatParser {
           .children[0]
           .data);
 
-	return results;
+        return results;
       }
     } catch (error) {
       return error;

@@ -12,10 +12,10 @@ const steamURL = 'http://store.steampowered.com/api/appdetails?appids='
 class GameModel {
   static search(query, from) {
     return elasticsearch.search({
+      from,
       index: indexName,
       q: 'title:' + query,
-      size: 10,
-      from: from
+      size: 10
     });
   }
 
