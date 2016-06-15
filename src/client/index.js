@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/style.css';
 
 render((
   <Router history={browserHistory}>
