@@ -16,7 +16,7 @@ const buttonStyle = {
   marginTop: '-3px'
 };
 
-class SearchForm extends Component {
+export default class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {searchText: this.props.searchText || ''};
@@ -73,5 +73,3 @@ SearchForm.contextTypes = {
   router: PropTypes.object.isRequired,
   autoFocus: PropTypes.bool
 }
-
-export default SearchForm;

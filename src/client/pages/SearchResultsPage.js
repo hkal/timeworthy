@@ -14,7 +14,7 @@ const navbarStyle = {
   borderRadius: 0
 };
 
-class SearchResultsPage extends Component {
+export default class SearchResultsPage extends Component {
   constructor(props) {
     super(props);
 
@@ -156,5 +156,3 @@ class SearchResultsPage extends Component {
 SearchResultsPage.contextTypes = {
   router: PropTypes.object.isRequired
 }
-
-export default SearchResultsPage;

@@ -6,7 +6,7 @@ const containerStyle = {
   marginTop: '20%'
 };
 
-class SearchPage extends Component {
+export default class SearchPage extends Component {
   componentDidMount() {
     document.title = 'Timeworthy';
   }
@@ -20,5 +20,3 @@ class SearchPage extends Component {
     );
   }
 }
-
-export default SearchPage;
