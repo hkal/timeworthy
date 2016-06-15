@@ -17,8 +17,23 @@ const buttonStyle = {
 };
 
 export default class SearchForm extends Component {
+  static propTypes = {
+    autoFocus: PropTypes.bool,
+    searchText: PropTypes.string
+  }
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
+  static defaultProps = {
+    autoFocus: false,
+    searchText: null
+  }
+
   constructor(props) {
     super(props);
+
     this.state = {searchText: this.props.searchText || ''};
     this.search = this.search.bind(this);
     this.selectText = this.selectText.bind(this);
@@ -67,9 +82,4 @@ export default class SearchForm extends Component {
       </form>
     );
   }
-}
-
-SearchForm.contextTypes = {
-  router: PropTypes.object.isRequired,
-  autoFocus: PropTypes.bool
 }

@@ -15,6 +15,10 @@ const navbarStyle = {
 };
 
 export default class SearchResultsPage extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props);
 
@@ -151,8 +155,4 @@ export default class SearchResultsPage extends Component {
       }, searchFunc);
     }
   }
-}
-
-SearchResultsPage.contextTypes = {
-  router: PropTypes.object.isRequired
 }
