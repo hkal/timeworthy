@@ -97,7 +97,13 @@ export default class SearchForm extends Component {
         <input
           type="text"
           ref="searchField"
-          style={textFieldStyle}
+          style={
+            this.state.isMobile ?
+              {
+                ...textFieldStyle,
+                fontSize: '16px'
+              } : textFieldStyle
+          }
           onChange={this.inputHandler}
           onFocus={this.selectText}
           value={this.state.searchText} />
