@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import MobileDetect from 'mobile-detect';
 
 const formStyle = {
   margin: '5px 0'
@@ -34,8 +35,11 @@ export default class SearchForm extends Component {
   constructor(props) {
     super(props);
 
+    const detector = new MobileDetect(window.navigator.userAgent);
+
     this.state = {
-      searchText: this.props.searchText || ''
+      searchText: this.props.searchText || '',
+      isMobile: detector.mobile()
     };
 
     this.search = this.search.bind(this);
@@ -50,7 +54,13 @@ export default class SearchForm extends Component {
   }
 
   search(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+
+    if (this.state.timeoutId) {
+      clearTimeout(this.state.timeoutId);
+    }
 
     const searchPath = '/results';
 
@@ -68,7 +78,15 @@ export default class SearchForm extends Component {
   }
 
   inputHandler(e) {
+    if (this.state.timeoutId) {
+      clearTimeout(this.state.timeoutId);
+    }
+
+    const timeoutId = this.state.isMobile ?
+      null : setTimeout(this.search, 1000);
+
     this.setState({
+      timeoutId,
       searchText: e.target.value
     });
   }
