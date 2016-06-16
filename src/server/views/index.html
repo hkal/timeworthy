@@ -10,14 +10,6 @@
   </head>
   <body>
     <div id="application"></div>
-    <script>
-      var GAME_TITLE_LIST = [
-      {% for title in gameList %}
-        "{{ title|safe }}"
-        {% if !loop.last %},{% endif %}
-      {% endfor %}
-      ];
-    </script>
     {% for script in bundles.js %}
     <script src="{{script}}"></script>
     {% endfor %}
