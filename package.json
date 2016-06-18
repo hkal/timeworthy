@@ -13,7 +13,7 @@
   "author": "hkal",
   "license": "MIT",
   "engines": {
-    "node": "5.4.1"
+    "node": "6.2.2"
   },
   "dependencies": {
     "amqplib": "^0.4.1",
