@@ -78,16 +78,17 @@ export default class SearchForm extends Component {
   }
 
   inputHandler(e) {
+    const searchText = e.target.value;
+    const timeoutId = this.state.isMobile || searchText === '' ?
+      null : setTimeout(this.search, 1000);
+
     if (this.state.timeoutId) {
       clearTimeout(this.state.timeoutId);
     }
 
-    const timeoutId = this.state.isMobile ?
-      null : setTimeout(this.search, 1000);
-
     this.setState({
       timeoutId,
-      searchText: e.target.value
+      searchText
     });
   }
 
