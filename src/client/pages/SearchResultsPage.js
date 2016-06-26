@@ -28,12 +28,16 @@ export default class SearchResultsPage extends Component {
       currentPage: 0,
       infiniteScrollDisabled: false
     };
+
+    this.search = this.search.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+    this.scrollHandler = this.scrollHandler.bind(this);
   }
 
   componentDidMount() {
-    this.unlisten = this.context.router.listenBefore(this.search.bind(this));
-    window.addEventListener('scroll', this.scrollHandler.bind(this));
-    this.search();
+    this.unlisten = this.context.router.listenBefore(this.onSearch);
+    window.addEventListener('scroll', this.scrollHandler);
+    this.onSearch();
   }
 
   componentWillUnmount() {
@@ -89,16 +93,36 @@ export default class SearchResultsPage extends Component {
         && window.scrollY > this.lastScrollTop
         && !this.state.isLoading
         && !this.state.infiniteScrollDisabled) {
-      this.search();
+      this.onSearch();
     }
 
     this.lastScrollTop = window.scrollY;
   }
 
-  search(historyContext) {
-    let searchText
+  onSearch(historyContext) {
+    if (historyContext) {
+      if (historyContext.pathname === '/') { return; }
 
-    let searchFunc = () => {
+      const searchText = historyContext.query.q;
+
+      this.setState({
+        currentPage: 0,
+        results: [],
+        isLoading: true,
+        infiniteScrollDisabled: false,
+      }, this.search(searchText));
+    } else {
+      const searchText = this.props.location.query.q;
+
+      this.setState({
+        isLoading: true,
+        infiniteScrollDisabled: false,
+      }, this.search(searchText));
+    }
+  }
+
+  search(searchText) {
+    return () => {
       if (this.request === undefined || this.request.xhr.readyState === 4) {
         this.request = request
           .get(`/search?q=${searchText}&from=${this.state.currentPage}`)
@@ -109,8 +133,7 @@ export default class SearchResultsPage extends Component {
             if (error) {
               this.setState({
                 isLoading: false,
-                didFail: true,
-                searchText: searchText
+                didFail: true
               });
 
               return;
@@ -119,8 +142,7 @@ export default class SearchResultsPage extends Component {
             if (response.body.length === 0) {
               this.setState({
                 isLoading: false,
-                infiniteScrollDisabled: true,
-                searchText: searchText
+                infiniteScrollDisabled: true
               });
 
               return;
@@ -129,30 +151,10 @@ export default class SearchResultsPage extends Component {
             this.setState({
               isLoading: false,
               results: this.state.results.concat(response.body),
-              currentPage: this.state.currentPage + 10,
-              searchText: searchText
+              currentPage: this.state.currentPage + 10
             });
           });
       }
     };
-
-    if (historyContext) {
-      if (historyContext.pathname === '/') { return; }
-
-      searchText = historyContext.query.q;
-
-      this.setState({
-        currentPage: 0,
-        results: [],
-        isLoading: true,
-        infiniteScrollDisabled: false,
-      }, searchFunc);
-    } else {
-      searchText = this.props.location.query.q;
-      this.setState({
-        isLoading: true,
-        infiniteScrollDisabled: false,
-      }, searchFunc);
-    }
   }
 }
