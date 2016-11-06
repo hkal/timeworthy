@@ -1,21 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import MobileDetect from 'mobile-detect';
-
-const formStyle = {
-  margin: '5px 0'
-};
-
-const textFieldStyle = {
-  outline: 'none',
-  padding: '10px',
-  marginRight: '10px',
-  width: '60%'
-};
-
-const buttonStyle = {
-  padding: '10px 12px',
-  marginTop: '-3px'
-};
+import './index.scss';
 
 export default class SearchForm extends Component {
   static propTypes = {
@@ -94,17 +79,10 @@ export default class SearchForm extends Component {
 
   render() {
     return (
-      <form method="POST" onSubmit={this.search} style={formStyle}>
+      <form className="search-form" method="POST" onSubmit={this.search}>
         <input
           type="text"
           ref="searchField"
-          style={
-            this.state.isMobile ?
-              {
-                ...textFieldStyle,
-                fontSize: '16px'
-              } : textFieldStyle
-          }
           onChange={this.inputHandler}
           onFocus={this.selectText}
           value={this.state.searchText} />
