@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import SteamLogo from '../assets/steamlogo.jpg';
-import HTBLogo from '../assets/htblogo.png';
+import SteamLogo from '../../assets/steamlogo.jpg';
+import HTBLogo from '../../assets/htblogo.png';
 
 const priceListStyle = {
   marginTop: '10px',

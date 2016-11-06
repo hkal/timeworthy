@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import request from 'superagent';
 
-import SearchForm from '../components/SearchForm';
-import SearchResult from '../components/SearchResult';
-import SpinnerGif from '../assets/spinner.gif';
+import SearchForm from '../../components/SearchForm';
+import SearchResult from '../../components/SearchResult';
+import SpinnerGif from '../../assets/spinner.gif';
 
 const navbarStyle = {
   position: 'absolute',
