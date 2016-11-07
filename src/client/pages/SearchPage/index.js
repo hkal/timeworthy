@@ -11,6 +11,9 @@ export default class SearchPage extends Component {
     return (
       <div className='search-page'>
         <h1>Timeworthy</h1>
+        <div className='summary'>
+          Game cost per hour made easy
+        </div>
         <SearchForm autoFocus={true} />
       </div>
     );
