@@ -1,18 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import request from 'superagent';
-
 import SearchForm from '../../components/SearchForm';
 import SearchResult from '../../components/SearchResult';
 import SpinnerGif from '../../assets/spinner.gif';
-
-const navbarStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  width: '100%',
-  zIndex: 1000,
-  borderRadius: 0
-};
+import './index.scss';
 
 export default class SearchResultsPage extends Component {
   static contextTypes = {
@@ -72,7 +63,7 @@ export default class SearchResultsPage extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-default" style={navbarStyle}>
+        <nav className="navbar navbar-default">
           <div className="container">
             <div className="navbar-header hidden-xs">
               <a className="navbar-brand" href="/">Timeworthy</a>

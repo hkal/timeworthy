@@ -1,63 +1,32 @@
 import React, { Component } from 'react';
-
 import SteamLogo from '../../assets/steamlogo.jpg';
 import HTBLogo from '../../assets/htblogo.png';
-
-const priceListStyle = {
-  marginTop: '10px',
-  padding: 0,
-  listStyle: 'none'
-};
-
-const wellStyle = {
-  boxShadow: 'none',
-  WebkitBoxShadow: 'none'
-};
-
-const titleStyle = {
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis'
-};
-
-const emphasisStyle = {
-  fontWeight: 500
-};
-
-const strikeOutStyle = {
-  ...emphasisStyle,
-  textDecoration: 'line-through'
-};
-
-const priceStyle = {
-  ...emphasisStyle,
-  color: '#4cae4c'
-};
+import './index.scss';
 
 export default (props) => {
   const game = props.game;
   const priceListItem = (game.salePrice) ? (
     <li>
-      Price: <span style={strikeOutStyle}>{game.priceFormatted}</span> <span style={priceStyle}>{game.salePriceFormatted}</span>
+      Price: <span className='strike-out'>{game.priceFormatted}</span> <span className='price'>{game.salePriceFormatted}</span>
     </li>
   ) : (
     <li>
-      Price: <span style={emphasisStyle}>{game.priceFormatted}</span>
+      Price: <span className='emphasis'>{game.priceFormatted}</span>
     </li>
   );
 
   return (
-    <div className='well' style={wellStyle}>
-      <h4 style={titleStyle}>{game.title}</h4>
+    <div className='well'>
+      <h4>{game.title}</h4>
       <div className='row'>
         <div className='col-xs-12'>
           <img src={game.image} style={{width: '100%'}} />
         </div>
         <div className='col-xs-8'>
-          <ul style={priceListStyle}>
-            <li>Price per hour: <span style={priceStyle}>{game.pricePerHourFormatted}</span></li>
+          <ul className='price-list'>
+            <li>Price per hour: <span className='price'>{game.pricePerHourFormatted}</span></li>
             { priceListItem }
-            <li>Time to beat: <span style={emphasisStyle}>{game.mainStoryTimeFormatted}</span></li>
+            <li>Time to beat: <span className='emphasis'>{game.mainStoryTimeFormatted}</span></li>
           </ul>
         </div>
         <div className='col-xs-4' style={{textAlign: 'right'}}>

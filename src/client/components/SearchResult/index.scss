@@ -1,0 +1,37 @@
+.well {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+  h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      text-overflow: inherit !important;
+      overflow: visible !important;
+      background: #f5f5f5 !important;
+    }
+  }
+
+  .price-list {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .emphasis {
+    font-weight: 500;
+  }
+
+  .strike-out {
+    @extend .emphasis;
+    text-decoration: line-through;
+  }
+
+  .price {
+    @extend .emphasis;
+    color: #4cae4c;
+  }
+}

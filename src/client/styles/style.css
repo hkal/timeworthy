@@ -1,9 +1,0 @@
-#application {
-  padding-top: 90px;
-}
-
-.well h4:hover {
-  text-overflow: inherit !important;
-  overflow: visible !important;
-  background: #f5f5f5 !important;
-}

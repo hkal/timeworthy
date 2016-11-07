@@ -4,7 +4,7 @@ import './index.scss';
 export default (props) => {
   return (
     <div>
-      <div className='container'>
+      <div className='container push-bottom'>
         {props.children}
       </div>
       <footer>

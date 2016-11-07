@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import SearchForm from '../../components/SearchForm';
-
-const containerStyle = {
-  textAlign: 'center',
-  marginTop: '20%'
-};
+import './index.scss';
 
 export default class SearchPage extends Component {
   componentDidMount() {
@@ -13,7 +9,7 @@ export default class SearchPage extends Component {
 
   render() {
     return (
-      <div style={containerStyle}>
+      <div className='search-page'>
         <h1>Timeworthy</h1>
         <SearchForm autoFocus={true} />
       </div>
