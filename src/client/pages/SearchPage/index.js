@@ -15,6 +15,17 @@ export default class SearchPage extends Component {
           Game cost per hour made easy
         </div>
         <SearchForm autoFocus={true} />
+        <div className='suggestions'>
+          <div>
+            Try searching for&nbsp;
+          </div>
+          <ul>
+            <li className="red">Witcher</li>
+            <li className="green">Elder Scrolls</li>
+            <li className="orange">Fallout</li>
+            <li className="blue">Mass Effect</li>
+          </ul>
+        </div>
       </div>
     );
   }

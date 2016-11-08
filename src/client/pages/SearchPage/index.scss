@@ -1,3 +1,25 @@
+@keyframes cycles {
+  0%, 20% {
+    transform: translateY(0);
+  }
+
+  25%, 45% {
+    transform: translateY(-20px);
+  }
+
+  50%, 70% {
+    transform: translateY(-40px);
+  }
+
+  75%, 95% {
+    transform: translateY(-60px);
+  }
+
+  100% {
+    transform: translateY(-80px);
+  }
+}
+
 .search-page {
   text-align: center;
   margin-top: 20%;
@@ -5,5 +27,40 @@
   .summary {
     font-size: 1.75rem;
     margin-bottom: 5rem;
+  }
+
+  .suggestions {
+    margin: 0 auto;
+    width: 19rem;
+    height: 2rem;
+    overflow: hidden;
+
+    div {
+      float: left;
+    }
+
+    ul {
+      animation: 10s linear 0s infinite cycles;
+      float: left;
+      list-style-type: none;
+      padding-left: 0;
+      font-weight: 500;
+
+      .red {
+        color: #d9534f;
+      }
+
+      .green {
+        color: #5cb85c;
+      }
+
+      .orange {
+        color: #f0ad4e;
+      }
+
+      .blue {
+        color: #5bc0de;
+      }
+    }
   }
 }
