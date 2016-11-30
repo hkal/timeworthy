@@ -37,18 +37,22 @@ export default class SearchResultsPage extends Component {
   }
 
   render() {
-    let resultBody;
+    let resultBody = (
+      <div className='row'>
+        {this.state.results.map((game, index) => {
+          return (
+            <div key={'div' + index}className='col-md-4'>
+              <SearchResult key={index} game={game} />
+            </div>
+          );
+        })}
+      </div>
+    );
 
-    if (this.state.results.length > 0) {
+    if (this.state.results.length === 0 && !this.state.isLoading) {
       resultBody = (
-        <div className='row'>
-          {this.state.results.map((game, index) => {
-            return (
-              <div key={'div' + index}className='col-md-4'>
-                <SearchResult key={index} game={game} />
-              </div>
-            );
-          })}
+        <div>
+          <h1>Could not find title on HowLongToBeat and Steam</h1>
         </div>
       );
     }
